@@ -29,7 +29,7 @@ pipeline {
         stage('Build') {
             steps {
                 // sh 'mvn --version'
-                sh 'pwd'
+                // sh 'pwd'
                 echo "Build"
             }
         }

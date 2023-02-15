@@ -30,6 +30,7 @@ pipeline {
             steps {
                 // sh 'mvn --version'
                 // sh 'pwd'
+                bat 'cd'
                 echo "Build"
             }
         }

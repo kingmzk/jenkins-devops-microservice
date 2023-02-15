@@ -54,6 +54,10 @@ pipeline {
         failure {
             echo "I Only Run When You Fails the BUild"
         }
+
+        changed {                             // means when status changed 
+            echo  "status is changed either fail to success or success to fail"
+        }              
     }
 
 }

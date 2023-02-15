@@ -24,7 +24,13 @@
 
 pipeline {
     // agent any
-    agent { docker { image  'maven:3.6.3'} }
+    // agent { docker { image  'maven:3.6.3'} }
+    agent {
+    docker {
+      image 'maven:3.6.3'
+      args '-v $C:/ProgramData/Jenkins/.jenkins/workspace/jenkins-devops-microservice-pipeline/:/app -w /app'
+    }
+  }
     stages{
         stage('Build') {
             steps {

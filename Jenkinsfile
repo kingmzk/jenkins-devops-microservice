@@ -42,7 +42,9 @@ pipeline {
                 echo "Integration Test"
             }
         }
-    }  post {
+    }  
+    
+    post {
         always {
             echo 'I am Good . I always Run No Matter What'
         }

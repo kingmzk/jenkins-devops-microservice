@@ -22,28 +22,47 @@
 
 //DECLARATIVE
 
-// 
-
-
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.6.3'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
-    options {
-        // Set the working directory to an absolute path
-        // Replace this path with your actual project directory
-        dockerfile {
-            dir 'E:\\DEVOPS\\jenkins'
-        }
-    }
-    stages {
+    // agent any
+    agent { docker { image  'maven:3.6.3'} }
+    stages{
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                // sh 'mvn --version'
+                // sh 'pwd'
+                bat 'cd'
+                bat 'mvn --version'
+                echo "Build"
             }
         }
+
+        stage('Test'){
+            steps {
+                echo "Test"
+            }
+        }
+
+        stage('Integration TEst'){
+            steps {
+                echo "Integration Test"
+            }
+        }
+    }  
+    
+    post {
+        always {
+            echo 'I am Good . I always Run No Matter What'
+        }
+        success {
+            echo "I RUn only when you are successfull"
+        }
+        failure {
+            echo "I Only Run When You Fails the BUild"
+        }
+
+        changed {                             // means when status changed 
+            echo  "status is changed either fail to success or success to fail"
+        }              
     }
+
 }

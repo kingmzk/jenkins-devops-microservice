@@ -160,7 +160,7 @@ pipeline {
          stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("zakriakhan/currency-exchange-devops:{env.BUILD_TAG}")
+                    dockerImage = docker.build("zakriakhan/currency-exchange-devops:${env.BUILD_TAG}")
                 }
             }
          }

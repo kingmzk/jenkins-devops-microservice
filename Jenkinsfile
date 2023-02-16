@@ -22,92 +22,28 @@
 
 //DECLARATIVE
 
-// pipeline {
-//     // agent any
-//     agent { docker { image  'maven:3.6.3'} }
-//     stages{
-//         stage('Build') {
-//             steps {
-//                 // sh 'mvn --version'
-//                 // sh 'pwd'
-//                 bat 'cd'
-//                 bat 'mvn --version'
-//                 echo "Build"
-//             }
-//         }
-
-//         stage('Test'){
-//             steps {
-//                 echo "Test"
-//             }
-//         }
-
-//         stage('Integration TEst'){
-//             steps {
-//                 echo "Integration Test"
-//             }
-//         }
-//     }  
-    
-//     post {
-//         always {
-//             echo 'I am Good . I always Run No Matter What'
-//         }
-//         success {
-//             echo "I RUn only when you are successfull"
-//         }
-//         failure {
-//             echo "I Only Run When You Fails the BUild"
-//         }
-
-//         changed {                             // means when status changed 
-//             echo  "status is changed either fail to success or success to fail"
-//         }              
-//     }
-
-// }
-
+// 
 
 
 pipeline {
     agent {
         docker {
             image 'maven:3.6.3'
-      args '-v C:/DEVOPS/jenkins:/app -w /app'
-
-
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn --version'
-                echo "Build"
-            }
-        }
-        stage('Test') {
-            steps {
-                echo "Test"
-            }
-        }
-        stage('Integration Test') {
-            steps {
-                echo "Integration Test"
+                sh 'mvn clean package'
             }
         }
     }
-    post {
-        always {
-            echo 'I am Good . I always Run No Matter What'
-        }
-        success {
-            echo "I RUn only when you are successfull"
-        }
-        failure {
-            echo "I Only Run When You Fails the BUild"
-        }
-        changed {
-            echo "status is changed either fail to success or success to fail"
+    options {
+        // Set the working directory to an absolute path
+        // Replace this path with your actual project directory
+        dockerfile {
+            dir '/var/jenkins_home/workspace/my-project'
         }
     }
 }

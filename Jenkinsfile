@@ -73,7 +73,8 @@ pipeline {
     agent {
         docker {
             image 'maven:3.6.3'
-            args '-v ${E:\\DEVOPS\\jenkins}:/app -w /app'
+      args '-v C:\\DEVOPS\\jenkins:/app -w /app'
+
         }
     }
     stages {

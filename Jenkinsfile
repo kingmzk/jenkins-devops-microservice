@@ -138,13 +138,13 @@ pipeline {
 
         stage('Test'){
             steps {
-                echo "mvn Test"
+                bat "mvn Test"
             }
         }
 
         stage('Integration TEst'){
             steps {
-                echo "mvn failsafe:integration-test failsafe:verify"
+                bat "mvn failsafe:integration-test failsafe:verify"
             }
         }
     }  

@@ -32,18 +32,18 @@ pipeline {
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
-    }
     options {
         // Set the working directory to an absolute path
         // Replace this path with your actual project directory
         dockerfile {
             dir 'E:\\DEVOPS\\jenkins'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
         }
     }
 }

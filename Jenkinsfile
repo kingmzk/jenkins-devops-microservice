@@ -29,7 +29,7 @@ pipeline {
     environment {
         dockerHome = tool 'myDocker'
         mavenHome =  tool 'myMaven'
-        PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+        PATH = "$dockerHome/bin:$mavenHome/bin:$PATHco"
     }
 
 
@@ -40,7 +40,7 @@ pipeline {
                 // sh 'mvn --version'
                 // sh 'pwd'
                 bat 'cd'
-                bat 'mvn --version'
+                // bat 'mvn --version'
                 // bat 'node --version'
                 bat 'docker version'
                 echo "Build"

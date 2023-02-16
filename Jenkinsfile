@@ -43,7 +43,7 @@ pipeline {
         // Set the working directory to an absolute path
         // Replace this path with your actual project directory
         dockerfile {
-            dir '/var/jenkins_home/workspace/my-project'
+            dir 'E:\DEVOPS\jenkins'
         }
     }
 }

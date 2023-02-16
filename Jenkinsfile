@@ -22,42 +22,78 @@
 
 //DECLARATIVE
 
+// pipeline {
+//     // agent any
+//     agent { docker { image  'maven:3.6.3'} }
+//     stages{
+//         stage('Build') {
+//             steps {
+//                 // sh 'mvn --version'
+//                 // sh 'pwd'
+//                 bat 'cd'
+//                 bat 'mvn --version'
+//                 echo "Build"
+//             }
+//         }
+
+//         stage('Test'){
+//             steps {
+//                 echo "Test"
+//             }
+//         }
+
+//         stage('Integration TEst'){
+//             steps {
+//                 echo "Integration Test"
+//             }
+//         }
+//     }  
+    
+//     post {
+//         always {
+//             echo 'I am Good . I always Run No Matter What'
+//         }
+//         success {
+//             echo "I RUn only when you are successfull"
+//         }
+//         failure {
+//             echo "I Only Run When You Fails the BUild"
+//         }
+
+//         changed {                             // means when status changed 
+//             echo  "status is changed either fail to success or success to fail"
+//         }              
+//     }
+
+// }
+
+
+
 pipeline {
-    // agent any
-    // agent { docker { image  'maven:3.6.3'} }
     agent {
-    docker {
-      image 'maven:3.6.3'
-      args '-v $C:/ProgramData/Jenkins/.jenkins/workspace/jenkins-devops-microservice-pipeline/:/app -w /app'
+        docker {
+            image 'maven:3.6.3'
+            args '-v ${E:\DEVOPS\jenkins}:/app -w /app'
+        }
     }
-  }
-    stages{
+    stages {
         stage('Build') {
-             environment {
-                  HOME="."
-                }
             steps {
-                // sh 'mvn --version'
-                // sh 'pwd'
-                bat 'cd'
-                bat 'mvn --version'
+                sh 'mvn --version'
                 echo "Build"
             }
         }
-
-        stage('Test'){
+        stage('Test') {
             steps {
                 echo "Test"
             }
         }
-
-        stage('Integration TEst'){
+        stage('Integration Test') {
             steps {
                 echo "Integration Test"
             }
         }
-    }  
-    
+    }
     post {
         always {
             echo 'I am Good . I always Run No Matter What'
@@ -68,10 +104,8 @@ pipeline {
         failure {
             echo "I Only Run When You Fails the BUild"
         }
-
-        changed {                             // means when status changed 
-            echo  "status is changed either fail to success or success to fail"
-        }              
+        changed {
+            echo "status is changed either fail to success or success to fail"
+        }
     }
-
 }

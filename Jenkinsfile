@@ -40,7 +40,7 @@ pipeline {
                 // sh 'mvn --version'
                
                 bat 'cd'
-                sh 'pwd'
+                // sh 'pwd'
                 // bat 'mvn --version'
                 // bat 'node --version'
                 bat 'docker version'

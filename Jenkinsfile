@@ -29,7 +29,7 @@ pipeline {
     environment {
         dockerHome = tool 'myDocker'
         mavenHome =  tool 'myMaven'
-        PATH = "$dockerHome/bin:$mavenHome/bin:$PATHco"
+        PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
     }
 
 
